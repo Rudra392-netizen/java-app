@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "aiml074/java-app"
         DOCKER_CREDENTIALS_ID = "dockerHubCred"
-        SONARQUBE_ENV = 'sonarqube-api'  // Name from Jenkins config
+        SONARQUBE_ENV = 'sonarqube'  // Name from Jenkins config
         SONAR_PROJECT_KEY = 'java-app'
     }
     stages {
