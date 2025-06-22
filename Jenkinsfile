@@ -21,7 +21,7 @@ pipeline {
                     sh """
                     mvn sonar:sonar \
                     -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                    -Dsonar.host.url=http://13.220.130.57:9000
+                    -Dsonar.host.url=http:/3.80.146.150/:9000
                     """
                 }
             }
@@ -44,7 +44,11 @@ pipeline {
                 sh "trivy image ${DOCKER_IMAGE}"
             }
         }
-
+        stage ("Run docker container") {
+            steps {
+                sh "docker run -d -p 8000:8000 ${DOCKER_IMAGE}"
+            }
+        }
         stage("Push to dockerhub") {
             steps {
                 withCredentials([usernamePassword(
