@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "aiml074/java-app"
         DOCKER_CREDENTIALS_ID = "dockerHubCred"
-        SONARQUBE_ENV = 'SonarQube'  // Name from Jenkins config
+        SONARQUBE_ENV = 'sonarqube-api'  // Name from Jenkins config
         SONAR_PROJECT_KEY = 'java-app'
     }
     stages {
@@ -15,12 +15,11 @@ pipeline {
         }
         stage ("Code Quality check") {
             steps {
-                withSonarQubeEnv ("sonarqube-api") {
+                withSonarQubeEnv("${SONARQUBE_ENV}") {
                     sh """
                     mvn sonar:sonar \
                     -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                    -Dsonar.host.url=http://13.220.130.57:9000 \
-                    -Dsonar.login="sonarqube-api"
+                    -Dsonar.host.url=http://13.220.130.57:9000
                     """
                 }
             }
