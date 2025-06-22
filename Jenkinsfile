@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage ("Cloning the code") {
             steps {
-                git url: "https://github.com/Rudratech-ui/java-quotes-app.git", branch: "main"
+                git url: "https://github.com/Rudratech-ui/java-app.git", branch: "main"
             }
         }
         stage ("Code Quality check") {
@@ -32,6 +32,11 @@ pipeline {
         stage ("Build docker image") {
             steps {
                 sh "docker build -t $DOCKER_IMAGE"
+            }
+        }
+        stage ("Docker image scanning using Trivy") {
+            steps {
+                sh "trivy image ${DOCKER_IMAGE}"
             }
         }
         stage("Push to dockerhub") {
