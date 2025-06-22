@@ -19,7 +19,8 @@ pipeline {
                     sh """
                     mvn sonar:sonar \
                     -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                    -Dsonar.host.url=http://localhost:9000
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.login="sonarqube-api"
                     """
                 }
             }
