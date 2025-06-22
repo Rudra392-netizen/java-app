@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage ("Cloning the code") {
             steps {
-                git url: "https://github.com/Rudratech-ui/java-app.git", branch: "main"
+                git url: "https://github.com/Rudra392-netizen/java-app.git", branch: "main"
             }
         }
 
