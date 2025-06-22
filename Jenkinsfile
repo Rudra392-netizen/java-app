@@ -15,7 +15,7 @@ pipeline {
         }
         stage ("Code Quality check") {
             steps {
-                withSonarQubeEnv ("Sonarqube") {
+                withSonarQubeEnv ("sonarqube-api") {
                     sh """
                     mvn sonar:sonar \
                     -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
