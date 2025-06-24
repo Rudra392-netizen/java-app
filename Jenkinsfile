@@ -24,7 +24,7 @@ pipeline {
 
         stage("SonarQube Analysis") {
             steps {
-                runSonarQube(env.SONAR_CREDENTIALS) // Assuming this method takes credential ID and projectKey
+                runSonarQube(env.SONAR_CREDENTIALS, "htp://44.201.86.107:9000", "java-app")
             }
         }
 
