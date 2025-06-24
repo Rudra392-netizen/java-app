@@ -26,7 +26,7 @@ pipeline {
 
         stage("SonarQube Analysis") {
             steps {
-                runSonarQube(env.SONAR_CREDENTIALS, env.SONAR_SERVER_NAME, env.SONAR_URL, env.PROJECT_KEY)
+                runSonarQube(env.SONAR_CREDENTIALS, env.SONAR_URL, env.PROJECT_KEY)
             }
         }
 
