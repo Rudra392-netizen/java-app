@@ -1,54 +1,63 @@
-@Library("my-shared-library")_
-    agent any 
+@Library("my-shared-library") _
+
+pipeline {
+    agent any
 
     environment {
-        DOCKER_IMAGE = "java-app"
+        IMAGE_NAME = "java-app"
         DOCKER_CREDENTIALS = "dockerHubCred"
         SONAR_CREDENTIALS = "SonarQube"
     }
+
     stages {
-        stage("Cloning the code from github") {
+        stage("Cloning the code from GitHub") {
             steps {
                 git url: "https://github.com/Rudra392-netizen/java-app.git", branch: "main"
             }
         }
-    }
-    stage("Build with maven") {
-        steps {
-            buildwithMaven()
+
+        stage("Build with Maven") {
+            steps {
+                buildWithMaven() // Assuming this is defined in your shared library
+            }
+        }
+
+        stage("SonarQube Analysis") {
+            steps {
+                runSonarQube(env.SONAR_CREDENTIALS, "java-app") // Assuming this method takes credential ID and projectKey
+            }
+        }
+
+        stage("Build Docker Image") {
+            steps {
+                sh "docker build -t ${env.IMAGE_NAME} ."
+            }
+        }
+
+        stage("Docker Image Scan using Trivy") {
+            steps {
+                runTrivy(env.IMAGE_NAME) // Assuming this is defined in your shared library
+            }
+        }
+
+        stage("Push Docker Image to DockerHub") {
+            steps {
+                pushToDockerhub(env.IMAGE_NAME, env.DOCKER_CREDENTIALS) // Assuming this is defined in your shared library
+            }
         }
     }
-    stage("sonarqube analysis") {
-        steps {
-            runSonarQube(env.SONAR_CREDENTIALS)
-        }
-    }
-    stage("Build Docker Image") {
-        steps {
-            sh "docker build -t ${env.IMAGE_NAME}"
-        }
-    }
-    stage("Docker image scan using trivy") {
-        steps {
-            runTrivy(env.IMAGE_NAME)
-        }
-    }
-    stage("Push docker image to dockerHub") {
-        steps {
-            pushToDockerhub(env.IMAGE_NAME, env.DOCKER_CREDENTIALS)
-        }
-    }
+
     post {
         always {
-            echo "pipeline is successfully completed"
+            echo "Pipeline has completed (success or failure)."
         }
+
         failure {
-            always {
-                echo "pipeline gets failed ! find the issue"
-            }
-            always {
-                echo "cleaning up the resources"
-                sh "docker rm -f $(docker ps -aq) || true"
-            }
+            echo "Pipeline failed. Please investigate the issue."
+
+            echo "Cleaning up Docker containers..."
+            // Use triple quotes or escape $ for shell compatibility
+            sh '''docker rm -f $(docker ps -aq) || true'''
         }
     }
+}
