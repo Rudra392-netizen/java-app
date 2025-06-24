@@ -6,7 +6,10 @@ pipeline {
     environment {
         IMAGE_NAME = "java-app"
         DOCKER_CREDENTIALS = "dockerHubCred"
-        SONAR_CREDENTIALS = "SonarQube"
+        SONAR_CREDENTIALS = "sonar-token-id"      // Your SonarQube token credential ID
+        SONAR_SERVER_NAME = "SonarQube"           // Name of SonarQube server config in Jenkins
+        SONAR_URL = "http://3.83.220.248:9000"    // Your SonarQube URL
+        PROJECT_KEY = "java-app"      
     }
 
     stages {
@@ -24,7 +27,7 @@ pipeline {
 
         stage("SonarQube Analysis") {
             steps {
-                runSonarQube(env.SONAR_CREDENTIALS, "http://3.83.220.248:9000", "java-app")
+                runSonarQube(env.SONAR_CREDENTIALS, env.SONAR_SERVER_NAME, env.SONAR_URL, env.PROJECT_KEY)
             }
         }
 
