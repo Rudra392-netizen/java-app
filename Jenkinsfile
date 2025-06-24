@@ -24,7 +24,7 @@ pipeline {
 
         stage("SonarQube Analysis") {
             steps {
-                runSonarQube(env.SONAR_CREDENTIALS, "http://44.201.86.107:9000", "java-app")
+                runSonarQube(env.SONAR_CREDENTIALS, "http://3.83.220.248", "java-app")
             }
         }
 
