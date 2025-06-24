@@ -48,7 +48,7 @@
             }
             always {
                 echo "cleaning up the resources"
-                sh "docker rm -f $(docker ps -ef) || true"
+                sh "docker rm -f $(docker ps -aq) || true"
             }
         }
     }
