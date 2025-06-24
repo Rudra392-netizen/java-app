@@ -54,10 +54,6 @@ pipeline {
 
         failure {
             echo "Pipeline failed. Please investigate the issue."
-
-            echo "Cleaning up Docker containers..."
-            // Use triple quotes or escape $ for shell compatibility
-            sh '''docker rm -f $(docker ps -aq) || true'''
-        }
+            
     }
 }
