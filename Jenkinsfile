@@ -38,16 +38,17 @@
             pushToDockerhub(env.IMAGE_NAME, env.DOCKER_CREDENTIALS)
         }
     }
-}
-post {
-    always {
-        echo "pipeline is completed successfully"
+    post {
+        always {
+            echo "pipeline is successfully completed"
+        }
+        failure {
+            always {
+                echo "pipeline gets failed ! find the issue"
+            }
+            always {
+                echo "cleaning up the resources"
+                sh "docker rm -f $(docker ps -ef) || true"
+            }
+        }
     }
-    failure {
-        echo "pipeline failed! Investigating the issue"
-    }
-    always {
-        echo "cleaning up the resources"
-        sh "docker rm -f $(docekr ps -aq) || true"
-    }
-}
