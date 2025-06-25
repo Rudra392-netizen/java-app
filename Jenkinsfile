@@ -7,7 +7,7 @@ pipeline {
         IMAGE_NAME = "java-app"
         DOCKER_CREDENTIALS = "dockerHubCred"
         SONAR_CREDENTIALS = "SonarQube"      // Your SonarQube token credential ID          // Name of SonarQube server config in Jenkins
-        SONAR_URL = "http://3.83.220.248:9000"    // Your SonarQube URL
+        SONAR_URL = "http://18.208.161.66:9000"    // Your SonarQube URL
         PROJECT_KEY = "java-app"      
     }
 
