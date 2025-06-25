@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "java-app"
+        IMAGE_NAME = "aiml074/java-app"
         DOCKER_CREDENTIALS = "dockerHubCred"
         SONAR_CREDENTIALS = "SonarQube"      // Your SonarQube token credential ID          // Name of SonarQube server config in Jenkins
         SONAR_URL = "http://18.208.161.66:9000"    // Your SonarQube URL
