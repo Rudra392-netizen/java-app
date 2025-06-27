@@ -57,7 +57,7 @@ java-app/
 
 Before running the project, ensure you have the following installed:
 
-🧰 Install Java 17 (OpenJDK)
+## 🧰 Install Java 17 (OpenJDK)
 
 sudo apt update
 
@@ -66,7 +66,7 @@ sudo apt install openjdk-17-jdk -y
 java --version
 
 
-🧰 Install Maven
+## 🧰 Install Maven
 
 sudo apt update
 
@@ -74,7 +74,7 @@ sudo apt install maven -y
 
 mvn -version
 
-🧰 Install Git
+## 🧰 Install Git
 
 sudo apt update
 
@@ -84,10 +84,12 @@ git --version
 
 
 
-🐳 Install Docker
+## 🐳 Install Docker
 
-##Install in Amazon Ubuntu
+## Install in Amazon Ubuntu
+
 #!/bin/bash
+
 sudo apt update -y
 
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
@@ -106,7 +108,8 @@ sudo apt install docker-ce -y
 
 sudo chmod 777 /var/run/docker.sock
 
-🔧 Install Jenkins (LTS)
+## 🔧 Install Jenkins (LTS)
+
 #!/bin/bash
 
 #-f Fail silently (no output at all) on server errors.
@@ -138,7 +141,7 @@ sudo apt-get update -y
 
 sudo apt-get install jenkins -y
 
-🧪 Install Trivy (Security Scanner)
+## 🧪 Install Trivy (Security Scanner)
 # A Simple and Comprehensive Vulnerability Scanner for Containers and other Artifacts, Suitable for CI.
 
 sudo apt-get install wget apt-transport-https gnupg lsb-release
@@ -156,10 +159,12 @@ sudo apt-get install trivy
 
 ### **Run Locally with Maven**
 
-```bash
 git clone https://github.com/Rudra392-netizen/java-app.git
+
 cd java-app
+
 mvn clean install
+
 mvn spring-boot:run
 
 Run with Docker
@@ -169,34 +174,36 @@ docker build -t java-app:latest .
 docker run -p 8000:8000 java-app
 
 
-✅ SonarQube Quality Gate
+## ✅ SonarQube Quality Gate
 Spring Framework Java App: ✅ Passed
 Server-Side Processing: ✅ Success
 
 🔁 Jenkins CI/CD Pipeline Stages
-Stage	             Tool	         Purpose
-Checkout   SCM       Git	     Clones project from GitHub
+Stage	                  Tool	           Purpose
+Checkout SCM            Git	         Clones project from GitHub
 
-Build with Maven    Maven	     Compiles & builds the app
+Build with Maven        Maven	       Compiles & builds the app
 
-SonarQube Analysis	SonarQube	 Static code quality check
+SonarQube Analysis	   SonarQube	   Static code quality check
 
-Build Docker Image	 Docker	     Creates container image
+Build Docker Image	   Docker	     Creates container image
 
-Vulnerability Scan	 Trivy	Scans   Docker image for CVEs
+Vulnerability Scan	   TrivyScans   Docker image for CVEs
 
 Push Image to DockerHub	 DockerHub	Publishes image to remote registry
 
-📦 DockerHub
+## 📦 DockerHub
+
 Optional — Update with your DockerHub username.
 
 docker pull your-username/java-app
 
-📄 License
+## 📄 License
 Licensed under the MIT License.
 See the LICENSE file for details.
 
-🙏 Acknowledgements
+## 🙏 Acknowledgements
+
 Spring Boot
 
 Jenkins
@@ -209,9 +216,14 @@ Docker
 
 GitHub
 
-👨‍💻 Maintainer
+## 👨‍💻 Maintainer
+
 Rudra Pratap Singh
+
 🔗 GitHub: Rudra392-netizen
+
+## Github_url:
+
 
 python
 
@@ -220,12 +232,9 @@ python
 ### ✅ Next Steps:
 
 - Add the image to: `screenshots/jenkins_pipeline.png`
+- 
 - Save this `README.md` in your repo root
+- 
 - Commit & push
-
-Let me know if you'd like me to generate:
-- GitHub action workflows
-- Jenkins build badges
-- Auto DockerHub triggers
 
 I'm happy to help with those too.
