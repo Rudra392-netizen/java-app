@@ -224,6 +224,7 @@ Rudra Pratap Singh
 
 ## Github_url:
 
+https://github.com/Rudra392-netizen/java-app.git
 
 python
 
