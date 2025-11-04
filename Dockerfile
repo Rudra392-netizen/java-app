@@ -1,5 +1,5 @@
-# Use supported OpenJDK 17 image
-FROM openjdk:17-slim
+# Use a supported JDK 17 image
+FROM eclipse-temurin:17-jdk-jammy
 
 # Metadata
 LABEL maintainer="trainwithshubham@gmail.com"
