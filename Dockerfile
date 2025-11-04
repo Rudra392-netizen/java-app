@@ -10,15 +10,14 @@ LABEL description="A Java Quotes application"
 WORKDIR /app
 
 # Copy source code and other files
-COPY src/ /app/src/
-COPY quotes.txt /app/
+COPY src/ ./src/
+COPY quotes.txt ./
 
 # Compile Java files
-WORKDIR /app/src
-RUN javac Main.java
+RUN javac src/Main.java
 
 # Expose port
 EXPOSE 8000
 
 # Run the Java application
-CMD ["java", "Main"]
+CMD ["java", "-cp", "src", "Main"]
