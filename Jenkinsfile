@@ -7,7 +7,7 @@ pipeline {
         IMAGE_NAME = "aiml40573/java-app"
         DOCKER_CREDENTIALS = "dockerHubCred"
         SONAR_CREDENTIALS = "SonarQube"
-        SONAR_URL = "http://16.176.13.252:9000"
+        SONAR_URL = "http://54.79.181.242:9000"
         PROJECT_KEY = "java-app"
     }
     
