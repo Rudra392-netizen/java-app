@@ -29,7 +29,7 @@ pipeline {
         // ✅ Unit Test from shared library
         stage("Run Unit Tests") {
             steps {
-                runMavenTest()
+                unitTest()
             }
         }
 
@@ -42,7 +42,7 @@ pipeline {
         // ✅ Quality Gate from shared library
         stage("Quality Gate Check") {
             steps {
-                checkQualityGate()
+                qualityGate()
             }
         }
 
@@ -67,7 +67,7 @@ pipeline {
         // ✅ Deploy from shared library
         stage("Deploy Application") {
             steps {
-                deployToK8s()
+                k8deploy()
             }
         }
     }
