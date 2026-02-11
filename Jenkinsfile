@@ -4,10 +4,10 @@ pipeline {
     agent any 
 
     environment {
-        IMAGE_NAME = "aiml40573/java-app"
+        IMAGE_NAME = "aiml074/java-app"
         DOCKER_CREDENTIALS = "dockerHubCred"
-        SONAR_CREDENTIALS = "SonarQube"
-        SONAR_URL = "http://54.79.181.242:9000"
+        SONAR_CREDENTIALS = "sonarqube"
+        SONAR_URL = "http:// 172.23.203.6:9000"
         PROJECT_KEY = "java-app"
     }
     
