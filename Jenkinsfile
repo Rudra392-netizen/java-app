@@ -9,50 +9,73 @@ pipeline {
         SONAR_CREDENTIALS = "sonarqube"
         SONAR_URL = "http://172.23.203.6:9000"
         PROJECT_KEY = "java-app"
+        EMAIL_RECIPIENT = "rpsingh98188@gmail.com"
     }
     
     stages {
-        stage("cloning the code from github") {
+
+        stage("Clone Code") {
             steps {
                 git url: "https://github.com/Rudra392-netizen/java-app.git", branch: "main"
             }
         }
 
-        stage("buid with maven") {
+        stage("Build with Maven") {
             steps {
                 buildwithMaven()
             }
         }
 
-        stage("sonarqube analysis") {
+        // ✅ Unit Test from shared library
+        stage("Run Unit Tests") {
+            steps {
+                runMavenTest()
+            }
+        }
+
+        stage("SonarQube Analysis") {
             steps {
                 runSonarQube(env.SONAR_CREDENTIALS, env.SONAR_URL, env.PROJECT_KEY)
             }
         }
-        stage("build docker image") {
+
+        // ✅ Quality Gate from shared library
+        stage("Quality Gate Check") {
+            steps {
+                checkQualityGate()
+            }
+        }
+
+        stage("Build Docker Image") {
             steps {
                 sh "docker build -t ${env.IMAGE_NAME} ."
             }
         }
 
-        stage("push docker image to dockerhub") {
+        stage("Push Docker Image") {
             steps {
                 pushToDockerHub(env.IMAGE_NAME, env.DOCKER_CREDENTIALS)
             }
         }
 
-        stage("docker image sacn using trivy") {
+        stage("Scan Image with Trivy") {
             steps {
                 runTrivy(env.IMAGE_NAME)
             }
         }
+
+        // ✅ Deploy from shared library
+        stage("Deploy Application") {
+            steps {
+                deployToK8s()
+            }
+        }
     }
+
     post {
         always {
-            echo "pipeline has completed (success)"
-        }
-        failure {
-            echo "pipeline has been failed"
+            // ✅ Email Notification from shared library
+            sendEmailNotification(env.EMAIL_RECIPIENT)
         }
     }
 }
