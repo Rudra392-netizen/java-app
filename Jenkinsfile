@@ -75,7 +75,7 @@ pipeline {
     post {
         always {
             // ✅ Email Notification from shared library
-            sendEmailNotification(env.EMAIL_RECIPIENT)
+            emailNotification(env.EMAIL_RECIPIENT)
         }
     }
 }
